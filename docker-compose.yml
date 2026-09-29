@@ -1,0 +1,7 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: space-mining-rabbitmq
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # Painel: http://localhost:15672 (guest / guest)

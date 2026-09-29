@@ -1,0 +1,14 @@
+### Comando válido (esperado: 202)
+POST http://localhost:8080/command
+Content-Type: application/json
+
+{ "command": "LEFT" }
+
+### Comando inválido (esperado: 400, sem retry)
+POST http://localhost:8080/command
+Content-Type: application/json
+
+{ "command": "JUMP" }
+
+### Contagem de comandos gravada pelo mining-service
+GET http://localhost:8082/commands

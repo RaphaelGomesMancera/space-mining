@@ -1,0 +1,38 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: mining-service
+  datasource:
+    url: jdbc:h2:mem:mining;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  h2:
+    console:
+      enabled: true      # http://localhost:8082/h2-console  (JDBC URL: jdbc:h2:mem:mining)
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        prefetch: 1              # backpressure: 1 mensagem por vez
+        concurrency: 1
+        max-concurrency: 1
+        default-requeue-rejected: false
+
+mining:
+  processing-delay-ms: 300       # tempo simulado de trabalho do robô
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
